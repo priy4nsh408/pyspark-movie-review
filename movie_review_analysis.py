@@ -17,6 +17,6 @@ df.groupBy("sentiment").count().show()
 df = df.withColumn("review_length", length(col("review")))
 df.filter(col("review_length") > 500).show()
 
-df.write.csv("cleaned_reviews", header=True, mode="overwrite", escape='"')
+df.toPandas().to_csv("cleaned_reviews.csv", index=False)
 
 spark.stop()
